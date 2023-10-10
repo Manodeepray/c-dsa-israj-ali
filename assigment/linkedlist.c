@@ -8,7 +8,7 @@ struct SingleList{
 	
 };
 
-struct SingleList *head=NULL, *temp=NULL;
+struct SingleList *head=NULL, *temp=NULL , *tail=NULL;
 void create();
 void Traversal();
 void insert_End();
@@ -167,16 +167,20 @@ void create(){
 	printf("\n Enter the dta : ");
 	scanf("%d",&x);
 	
-	p->data=x;
-	p->Next=NULL;
+	p->data = x;
+	p->Next = NULL;
+	p->Prev = NULL;
 	
 	if(head==NULL){
-		head=p;
-		temp=p;		
+		head = p;
+		tail = p;
+		temp = p;		
 	}
 	else{
 		temp->Next=p;
 		temp=p;
+		temp->Next=NULL;
+		temp->Prev
 	}
 	counter+=1;
 
@@ -269,7 +273,7 @@ void insert_after(){
 		
 		p->data=x;
 		p->Next=NULL;
-		p->next=temp6->Next;
+		p->Next=temp6->Next;
 		temp6->Next=p;
 
 	}
@@ -345,17 +349,107 @@ void deletion_after()
 }
 
 void convertCirc(){
+	struct SingleList *temp9;
+	temp9 = head;
+	if (head==NULL)
+	{
+		printf("empty list");
+	}
 
-	
+	while (temp9->Next != NULL)
+	{
+		temp9=temp9->Next;
+
+	}
+
+	temp9->Next = head;	
+
 }
 
 
 
 
-void insert_Circ();
-void delete_Circ();
+void insert_Circ(){
+	struct SingleList *temp10;
+	temp10 = head;
+	if (head==NULL)
+	{
+		printf("empty list");
+	}
 
-void convertdoublyList();
+	while (temp10->Next != head)
+	{
+		temp10=temp10->Next;
+
+	}
+	
+	struct SingleList *p;
+		int x;
+		p=(struct SingleList*)malloc(sizeof(struct SingleList)); 
+		
+		printf("\n Enter the data");
+		scanf("%d",&x);
+		
+		p->data=x;
+		p->Next=NULL;
+
+		p->Next= head;
+		temp10->Next = p;
+
+
+}
+void delete_Circ(){
+
+	struct SingleList *temp11,*temp12;
+	temp11 = head;
+	temp12 = head;
+	if (head==NULL)
+	{
+		printf("empty list");
+	}
+
+	while (temp11->Next != head)
+	{
+		temp11=temp11->Next;
+
+	}
+	while (temp12->Next != temp11)
+	{
+		temp12=temp12->Next;
+
+	}
+	temp12->Next=head;
+	temp11->Next=NULL
+
+}
+
+void convertdoublyList(){
+
+	struct SingleList *temp13,*temp14;
+	temp13 = head;
+	temp14 = head;
+	if (head==NULL)
+	{
+		printf("empty list");
+	}
+
+	while (temp13->Next != head)
+	{
+		temp13=temp13->Next;
+
+	}
+
+	temp13->Next = NULL;
+
+	while (temp14->Next != NULL)
+	{
+		temp14=temp14->Next;
+
+	}	
+	tail = temp14;
+
+
+}
 void insertDLL_End();
 void insertDLL_beginning();
 void insertDLL_after();
