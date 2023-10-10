@@ -1,0 +1,18 @@
+struct list(){
+
+    int data;
+    struct list* add;
+    
+  
+};
+
+
+ptr1 = (struct list*)malloc(4*sizeof(struct list));
+
+ptr1-> data=10;
+ptr1 -> add =NULL;
+
+ptr2 = ( struct list*)malloc(4*sizeof(struct list));
+ptr2->data=12 ;  
+ptr2->add =NULL;
+ptr1->add = ptr2;
