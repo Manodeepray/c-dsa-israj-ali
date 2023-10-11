@@ -8,7 +8,7 @@ struct SingleList{
 	
 };
 
-struct SingleList *head=NULL, *temp=NULL;
+struct SingleList *head=NULL, *temp=NULL , *tail=NULL;
 void create();
 void Traversal();
 void insert_End();
@@ -35,7 +35,7 @@ void deleteDLL_before();
 int main(){
 		
 	while (1) {
-        int option;
+        int option,z,option2;
         printf("Select an option:\n");
  
 
@@ -43,7 +43,7 @@ int main(){
         printf("2. traversal \n");
 
         printf("3. insert at the beginning\n");
-		printf("4. insert at the end\n")
+		printf("4. insert at the end\n");
         printf("5. insert after the element\n");
         
         printf("6. delete from the beginning\n");
@@ -64,7 +64,7 @@ int main(){
         
         printf("17. delete from the beginning DLL\n");
         printf("18. delete from the end DLL\n");
-        printf("19. delete after the element DLL \n")
+        printf("19. delete after the element DLL \n");
 		printf("20. delete before the element DLL\n");
 
 
@@ -78,14 +78,28 @@ int main(){
                 create();
                 break;
             case 2:
-                Traversal();
+				printf("1.traversal single\n2.traversal circular\nenterr option:");
+				scanf("%d",&option2);
+				switch (option2)
+				{
+				case 1:
+					Traversal();
+					break;
+				case 2:
+					TraversalCirc();
+					break;
+				
+				default:
+					break;
+				}
+                
                 break;
 
             case 3:
-                insert_End();
+                insert_beginning();
                 break;
             case 4:
-				insert_beginning();
+		insert_End();
                 break;
             case 5:
                 insert_after();
@@ -167,16 +181,20 @@ void create(){
 	printf("\n Enter the dta : ");
 	scanf("%d",&x);
 	
-	p->data=x;
-	p->Next=NULL;
+	p->data = x;
+	p->Next = NULL;
+	p->Prev = NULL;
 	
 	if(head==NULL){
-		head=p;
-		temp=p;		
+		head = p;
+		tail = p;
+		temp = p;		
 	}
 	else{
 		temp->Next=p;
 		temp=p;
+		temp->Next=NULL;
+		temp->Prev;
 	}
 	counter+=1;
 
@@ -206,7 +224,6 @@ void insert_beginning(){
 		scanf("%d",&x);
 		
 		p->data = x;
-		p->Next = NULL;
 		temp5 = head;
 		p->Next = temp5;
 		head = p;
@@ -225,7 +242,7 @@ void insert_End(){
 	else{
 		
 		temp2=head;
-		while(temp2!=NULL){
+		while(temp2->Next!=NULL){
 			//printf("%d\t",temp2->data);
 			temp2=temp2->Next;
 		}
@@ -255,6 +272,12 @@ void insert_after(){
 		int y,i=1;
 		printf("enter the index you want to enter after\n");
 		scanf("%d",&y);
+		if (y>counter)
+		{
+			printf("overflow condition");
+			exit(0);
+		}
+		
 		while(i!=y){
 			
 			temp6=temp6->Next;
@@ -269,7 +292,7 @@ void insert_after(){
 		
 		p->data=x;
 		p->Next=NULL;
-		p->next=temp6->Next;
+		p->Next=temp6->Next;
 		temp6->Next=p;
 
 	}
@@ -282,24 +305,31 @@ void deletion_End(){
 	temp3=head;
 	if (head == NULL) {
 		printf("The list is empty\n ");
+		return;
 	}
-	while (temp1->Next!=NULL)
+
+	if (head->Next==NULL)
 	{
-		temp1=temp1->Next;
-
+		free(head);
+		head=NULL;
+		counter--;
+		return;
 	}
-
-	while (temp3->Next!=temp1)
+	
+	while (temp3->Next->Next!=NULL)
 	{
 		temp3=temp3->Next;
 
 	}
-	temp3->Next = NULL;
+	free(temp3->Next);
+	temp3->Next=NULL;
+	
+
 	counter-=1;
 }
 
 void deletion_beginning(){
-	struct SingeList *temp4;
+	struct SingleList *temp4;
 	temp4 = head;
 	if (temp4==NULL)
 	{
@@ -328,6 +358,12 @@ void deletion_after()
 		int y,i=1;
 		printf("enter the index you want to delete after\n");
 		scanf("%d",&y);
+		if (y>counter)
+		{
+			printf("overflow condition");
+			exit(0);
+		}
+		
 		while(i!=y){
 			
 			temp7=temp7->Next;
@@ -345,22 +381,142 @@ void deletion_after()
 }
 
 void convertCirc(){
+	struct SingleList *temp9;
+	temp9 = head;
+	if (head==NULL)
+	{
+		printf("empty list");
+	}
 
-	
+	while (temp9->Next != NULL)
+	{
+		temp9=temp9->Next;
+
+	}
+
+	temp9->Next = head;	
+
 }
 
 
+void TraversalCirc(){
+	 struct SingleList *temp2;
+    temp2 = head;
+    if (head == NULL) {
+        printf("Circular Linked List is empty.\n");
+        return;
+    }
+    do {
+        printf("%d\t", temp2->data);
+        temp2 = temp2->Next;
+    } while (temp2 != head);
+}
+
+void insert_Circ(){
+	struct SingleList *temp10;
+	temp10 = head;
+	if (head==NULL)
+	{
+		printf("empty list");
+	}
+
+	while (temp10->Next != head)
+	{
+		temp10=temp10->Next;
+
+	}
+	
+	struct SingleList *p;
+		int x;
+		p=(struct SingleList*)malloc(sizeof(struct SingleList)); 
+		
+		printf("\n Enter the data");
+		scanf("%d",&x);
+		
+		p->data=x;
+		p->Next=NULL;
+
+		p->Next= head;
+		temp10->Next = p;
 
 
-void insert_Circ();
-void delete_Circ();
+}
+void delete_Circ(){
 
-void convertdoublyList();
-void insertDLL_End();
-void insertDLL_beginning();
-void insertDLL_after();
-void insertDLL_before();
-void deleteDLL_End();
-void deleteDLL_beginning();
-void deleteDLL_after();
-void deleteDLL_before();
+	struct SingleList *temp11,*temp12;
+	temp11 = head;
+	temp12 = head;
+	if (head==NULL)
+	{
+		printf("empty list");
+	}
+
+	while (temp11->Next != head)
+	{
+		temp11=temp11->Next;
+
+	}
+	while (temp12->Next != temp11)
+	{
+		temp12=temp12->Next;
+
+	}
+	temp12->Next=head;
+	temp11->Next=NULL;
+
+}
+
+void convertdoublyList(){
+
+	struct SingleList *temp13,*temp14;
+	temp13 = head;
+	temp14 = head;
+	if (head==NULL)
+	{
+		printf("empty list");
+	}
+
+	while (temp13->Next != head)
+	{
+		temp13=temp13->Next;
+
+	}
+
+	temp13->Next = NULL;
+
+	while (temp14->Next != NULL)
+	{
+		temp14=temp14->Next;
+
+	}	
+	tail = temp14;
+
+
+}
+void insertDLL_End(){
+	printf("not done yet");
+}
+void insertDLL_beginning(){
+	printf("not done yet");
+}
+
+void insertDLL_after(){
+	printf("not done yet");
+}
+
+void insertDLL_before(){
+	printf("not done yet");
+}
+
+void deleteDLL_End(){
+	printf("not done yet");
+}
+void deleteDLL_beginning(){
+	printf("not done yet");
+}
+void deleteDLL_after(){
+	printf("not done yet");
+}
+void deleteDLL_before(){
+	printf("not done yet");
+}
