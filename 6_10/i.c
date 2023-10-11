@@ -750,8 +750,62 @@
 		counter-=1;
 	}
 	void deleteDLL_after(){
-		printf("not done yet");
+		struct SingleList *temp6,*temp7;
+		if(head==NULL){
+			create();
+		}
+		else{
+			
+			temp6=head;
+			int y,i=1;
+			printf("enter the index you want to delete after\n");
+			scanf("%d",&y);
+			if (y>counter)
+			{
+				printf("overflow condition");
+				exit(0);
+			}
+			
+			while(i!=y){
+				
+				temp6=temp6->Next;
+				i++;
+			}
+			temp7=temp6->Next;
+			temp6->Next=temp7->Next;
+			temp7->Next->Prev=temp6;
+			free(temp7);
+		counter-=1;
+	}
 	}
 	void deleteDLL_before(){
-		printf("not done yet");
+		struct SingleList *temp6,*temp7;
+		if(head==NULL){
+			create();
+		}
+		else{
+			
+			temp6=head;
+			int y,i=1;
+			printf("enter the index you want to delete after\n");
+			scanf("%d",&y);
+			if (y>counter)
+			{
+				printf("overflow condition");
+				exit(0);
+			}
+			
+			while(i!=y){
+				
+				temp6=temp6->Next;
+				i++;
+			}
+
+			temp7=temp6->Prev;
+			temp7->Prev->Next=temp6;
+			temp6->Prev=temp7->Prev;
+			free(temp7);
 	}
+	}
+
+
