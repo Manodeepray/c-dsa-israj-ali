@@ -787,7 +787,7 @@
 			
 			temp6=head;
 			int y,i=1;
-			printf("enter the index you want to delete after\n");
+			printf("enter the index you want to delete before\n");
 			scanf("%d",&y);
 			if (y>counter)
 			{

@@ -21,7 +21,7 @@
 	void deletion_after();
 
 	void convertCirc();
-	void insert_Circ();
+	void insert_CircBeginning();
 	void insert_CircEnd();
 	void delete_CircEnd();
 	void delete_CircBeginning();
@@ -130,7 +130,7 @@
 					switch (option2)
 					{
 					case 1:
-						insert_Circ();
+						insert_CircBeginning();
 						break;
 					case 2:
 						insert_CircEnd();
@@ -443,7 +443,7 @@
 		} while (temp2 != head);
 	}
 
-	void insert_Circ(){
+	void insert_CircBeginning(){
 		struct SingleList *temp10;
 		temp10 = head;
 		if (head==NULL)
@@ -787,7 +787,7 @@
 			
 			temp6=head;
 			int y,i=1;
-			printf("enter the index you want to delete after\n");
+			printf("enter the index you want to delete before\n");
 			scanf("%d",&y);
 			if (y>counter)
 			{
