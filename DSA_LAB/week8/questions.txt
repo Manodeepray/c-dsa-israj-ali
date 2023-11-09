@@ -1,0 +1,8 @@
+Week8
+-&gt; Write a menu-driven program to implement Queue operations such as Enqueue,
+Dequeue, Peek, display
+-&gt; Write a menu-driven program to implement Circular Queue operations such as Enqueue,
+Dequeue, Peek, Display of elements
+-&gt; Write a program to convert an infix expression into postfix and prefix expression using
+stack
+-&gt; Write a program to evaluate a postfix and prefix expression using stack
