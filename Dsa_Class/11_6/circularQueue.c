@@ -31,7 +31,35 @@ struct circularQueue *createCQ()
     return queue;
 }
 
-void enqueue();
+void enqueue(struct circularQueue *queue)
+{
+    if (queue->size == queue->capacity)
+    {
+        printf("queue is full.\n");
+        return;
+    }
+
+    struct Node *p;
+    p = (struct Node *)malloc(sizeof(struct Node));
+    int x;
+    printf("enter the data : ");
+    scanf("%d", &x);
+    p->data = x;
+    p->Next = NULL;
+
+    if (queue->tail == NULL)
+    {
+        queue->head = p;
+        queue->tail = p;
+    }
+    else
+    {
+        queue->tail->Next = p;
+        queue->tail = queue->tail->Next;
+    }
+
+    queue->size++;
+}
 void dequeue();
 void isEmpty();
 void isFull();
@@ -90,32 +118,4 @@ int main()
             printf("Incorrect choice \n");
         }
     }
-}
-
-void enqueue()
-{
-}
-
-void dequeue()
-{
-}
-
-void isEmpty()
-{
-}
-
-void isFull()
-{
-}
-
-void peek()
-{
-}
-
-void show()
-{
-}
-
-void Elements()
-{
 }
