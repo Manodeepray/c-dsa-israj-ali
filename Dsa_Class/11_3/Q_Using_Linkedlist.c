@@ -23,7 +23,7 @@ int count = 0;
 
 int main()
 {
-    w int ch;
+    int ch;
     while (1)
     {
         printf("1. create a Single LL \n");

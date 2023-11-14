@@ -113,6 +113,7 @@ void dequeue()
         f = f + 1;
     }
 }
+
 void isEmpty()
 {
     if (f == -1 && r == -1)
@@ -125,6 +126,7 @@ void isEmpty()
         printf("queue is not empty\n");
     }
 }
+
 void isFull()
 {
     if ((r - f + 1) == n)
