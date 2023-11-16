@@ -1,0 +1,9 @@
+Week 9
+Write a menu-driven program to implement a Binary search tree and perform the following
+operations:
+A. Insert a node
+B. Delete a node
+C. Search for a Key
+D. Traversal: Inorder, Preorder, and Postorder
+E. Count the number of leaf nodes
+F. Display the path to a node

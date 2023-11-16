@@ -60,7 +60,9 @@ void enqueue(struct circularQueue *queue)
 
     queue->size++;
 }
-void dequeue();
+void dequeue()
+{
+}
 void isEmpty();
 void isFull();
 void peek();

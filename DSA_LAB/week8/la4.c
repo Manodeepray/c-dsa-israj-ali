@@ -113,20 +113,22 @@ int main()
     char exp[MAX];
     int choice;
 
+    printf("\nName: Manodeep Ray \nRoll No:2230028\n");
+
     printf("Enter the expression type (1 for postfix, 2 for prefix): ");
     scanf("%d", &choice);
 
     if (choice == 1)
     {
         printf("Enter a postfix expression: ");
-        scanf("%s", exp);
+        scanf("%s", &exp);
         int result = evaluatePostfix(exp);
         printf("The result of the postfix expression is: %d\n", result);
     }
     else if (choice == 2)
     {
         printf("Enter a prefix expression: ");
-        scanf("%s", exp);
+        scanf("%s", &exp);
         int result = evaluatePrefix(exp);
         printf("The result of the prefix expression is: %d\n", result);
     }

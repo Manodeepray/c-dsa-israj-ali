@@ -152,6 +152,7 @@ void infixToPrefix(char *infix)
 int main()
 {
     char infix[MAX];
+    printf("\nName: Manodeep Ray \nRoll No:2230028\n");
     printf("Enter the infix expression: ");
     scanf("%s", infix);
 

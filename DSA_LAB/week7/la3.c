@@ -1,55 +1,53 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Define the structure for a single non-zero matrix element
-typedef struct SparseElement
+typedef struct Node
 {
     int row;
     int col;
     int value;
-    struct SparseElement *next;
-} SparseElement;
+    struct Node *next;
+} Node;
 
-// Function to create a new non-zero matrix element
-SparseElement *createSparseElement(int row, int col, int value)
+void insertNode(Node **head, int row, int col, int value)
 {
-    SparseElement *element = (SparseElement *)malloc(sizeof(SparseElement));
-    element->row = row;
-    element->col = col;
-    element->value = value;
-    element->next = NULL;
-    return element;
-}
+    Node *newNode = (Node *)malloc(sizeof(Node));
+    newNode->row = row;
+    newNode->col = col;
+    newNode->value = value;
+    newNode->next = NULL;
 
-// Function to add a non-zero element to the sparse matrix
-void addSparseElement(SparseElement **matrix, int row, int col, int value)
-{
-    SparseElement *newElement = createSparseElement(row, col, value);
-    newElement->next = *matrix;
-    *matrix = newElement;
-}
-
-// Function to display the sparse matrix
-void displaySparseMatrix(SparseElement *matrix, int rows, int cols)
-{
-    int row, col;
-    for (row = 0; row < rows; row++)
+    if (*head == NULL)
     {
-        for (col = 0; col < cols; col++)
+        *head = newNode;
+    }
+    else
+    {
+        Node *temp = *head;
+        while (temp->next != NULL)
         {
-            int found = 0;
-            SparseElement *current = matrix;
-            while (current != NULL)
+            temp = temp->next;
+        }
+        temp->next = newNode;
+    }
+}
+
+void displayMatrix(Node *head, int rows, int cols)
+{
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < cols; j++)
+        {
+            Node *temp = head;
+            while (temp != NULL && temp->row != i && temp->col != j)
             {
-                if (current->row == row && current->col == col)
-                {
-                    printf("%d ", current->value);
-                    found = 1;
-                    break;
-                }
-                current = current->next;
+                temp = temp->next;
             }
-            if (!found)
+            if (temp != NULL)
+            {
+                printf("%d ", temp->value);
+            }
+            else
             {
                 printf("0 ");
             }
@@ -60,25 +58,27 @@ void displaySparseMatrix(SparseElement *matrix, int rows, int cols)
 
 int main()
 {
-    SparseElement *matrix = NULL;
-    int rows, cols, nonZeroEntries;
+    int rows, cols, nonZeroElements;
+    printf("Enter the number of rows: ");
+    scanf("%d", &rows);
+    printf("Enter the number of columns: ");
+    scanf("%d", &cols);
 
-    printf("Enter the number of rows and columns of the matrix: ");
-    scanf("%d %d", &rows, &cols);
+    Node *head = NULL;
 
-    printf("Enter the number of non-zero entries: ");
-    scanf("%d", &nonZeroEntries);
-
-    for (int i = 0; i < nonZeroEntries; i++)
+    printf("Enter the non-zero elements of the matrix:\n");
+    printf("Enter the row index, column index, and value of each non-zero element:\n");
+    nonZeroElements = 0;
+    do
     {
         int row, col, value;
-        printf("Enter non-zero element (row, column, value): ");
         scanf("%d %d %d", &row, &col, &value);
-        addSparseElement(&matrix, row, col, value);
-    }
+        insertNode(&head, row, col, value);
+        nonZeroElements++;
+    } while (nonZeroElements < (rows * cols) / 2);
 
-    printf("Sparse Matrix:\n");
-    displaySparseMatrix(matrix, rows, cols);
+    printf("The sparse matrix representation using linked list:\n");
+    displayMatrix(head, rows, cols);
 
     return 0;
 }
