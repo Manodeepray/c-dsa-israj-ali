@@ -91,7 +91,7 @@ int main()
         default:
             printf("Invalid choice. Please try again.\n");
         }
-    } while (choice != '7' && choice != '7');
+    } while (choice != '7');
 
     return 0;
 }
