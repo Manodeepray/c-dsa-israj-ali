@@ -29,35 +29,33 @@ int main()
     do
     {
         printf("\nBinary Search Tree Operations:\n");
-        printf("A. Insert a node\n");
-        printf("B. Delete a node\n");
-        printf("C. Search for a Key\n");
-        printf("D. Traversal: Inorder, Preorder, and Postorder\n");
-        printf("E. Count the number of leaf nodes\n");
-        printf("F. Display the path to a node\n");
-        printf("G. Exit\n");
+        printf("1. Insert a node\n");
+        printf("2. Delete a node\n");
+        printf("3. Search for a Key\n");
+        printf("4. Traversal: Inorder, Preorder, and Postorder\n");
+        printf("5. Count the number of leaf nodes\n");
+        printf("6. Display the path to a node\n");
+        printf("7. Exit\n");
 
         printf("Enter your choice: ");
-        scanf(" %c", &choice);
+        scanf(" %d", &choice);
 
         switch (choice)
         {
-        case 'A':
-        case 'a':
+
+        case 1:
             printf("Enter the key to insert: ");
             scanf("%d", &key);
             root = insert(root, key);
             break;
 
-        case 'B':
-        case 'b':
+        case 2:
             printf("Enter the key to delete: ");
             scanf("%d", &key);
             root = deleteNode(root, key);
             break;
 
-        case 'C':
-        case 'c':
+        case 3:
             printf("Enter the key to search: ");
             scanf("%d", &key);
             if (search(root, key) != NULL)
@@ -66,8 +64,7 @@ int main()
                 printf("Key %d is not found in the tree.\n", key);
             break;
 
-        case 'D':
-        case 'd':
+        case 4:
             printf("Inorder Traversal: ");
             inorderTraversal(root);
             printf("\nPreorder Traversal: ");
@@ -77,20 +74,17 @@ int main()
             printf("\n");
             break;
 
-        case 'E':
-        case 'e':
+        case 5:
             printf("Number of leaf nodes: %d\n", countLeafNodes(root));
             break;
 
-        case 'F':
-        case 'f':
+        case 6:
             printf("Enter the key to display the path: ");
             scanf("%d", &key);
             displayPathToNode(root, key);
             break;
 
-        case 'G':
-        case 'g':
+        case 7:
             printf("Exiting the program.\n");
             break;
 
