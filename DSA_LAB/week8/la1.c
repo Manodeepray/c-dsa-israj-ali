@@ -18,7 +18,6 @@ int count = 0;
 int main()
 {
     int ch;
-    printf("\nName: Manodeep ray \nRoll No:2230028\n");
     while (1)
     {
         printf("1. create a Single LL \n");

@@ -1,27 +1,29 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define n 100
 struct Node
 {
     int data;
     struct Node *Next;
 };
+
+struct Node *Head = NULL, *Tail = NULL;
+
 void createNode();
 void enqueue();
 void dequeue();
 void peek();
 void show();
-struct Node *Head = NULL, *Tail = NULL, *Temp = NULL;
+
 int count = 0;
 
 int main()
 {
     int ch;
-    printf("\nName: Manodeep Ray \nRoll No:2230028\n");
+
     while (1)
     {
-        printf("1. create a Single LL \n");
+        printf("1. Create a Single LL \n");
         printf("2. Enqueue Operation\n");
         printf("3. Dequeue Operation\n");
         printf("4. Display the Queue\n");
@@ -73,11 +75,13 @@ void createNode()
 
     if (Head == NULL)
     {
-        Head = Tail = Temp = p;
+        Head = Tail = p;
+        Tail->Next = Head;
     }
     else
     {
         Tail->Next = p;
+        p->Next = Head;
         Tail = p;
     }
     count++;
@@ -91,12 +95,6 @@ void enqueue()
     }
     else
     {
-        struct Node *temp2 = Head;
-        while (temp2->Next != NULL)
-        {
-            temp2 = temp2->Next;
-        }
-
         struct Node *p = (struct Node *)malloc(sizeof(struct Node));
         if (p == NULL)
         {
@@ -109,8 +107,8 @@ void enqueue()
         scanf("%d", &x);
 
         p->data = x;
-        p->Next = NULL;
-        temp2->Next = p;
+        p->Next = Head;
+        Tail->Next = p;
         Tail = p;
     }
     count++;
@@ -124,25 +122,50 @@ void dequeue()
         return;
     }
 
-    struct Node *temp4 = Head;
-    Head = Head->Next;
-    temp4->Next = NULL;
-    free(temp4);
+    struct Node *temp = Head;
+
+    if (Head == Tail)
+    {
+        Head = NULL;
+        Tail = NULL;
+    }
+    else
+    {
+        Head = Head->Next;
+        Tail->Next = Head;
+    }
+
+    free(temp);
     count--;
 }
+
 void peek()
 {
-
-    printf("The first element is %d.\n", Head->data);
+    if (Head != NULL)
+    {
+        printf("The first element is %d.\n", Head->data);
+    }
+    else
+    {
+        printf("Queue is empty.\n");
+    }
 }
 
 void show()
 {
+    if (Head == NULL)
+    {
+        printf("Queue is empty.\n");
+        return;
+    }
+
     struct Node *Temp6 = Head;
-    while (Temp6 != NULL)
+
+    do
     {
         printf("%d ", Temp6->data);
         Temp6 = Temp6->Next;
-    }
+    } while (Temp6 != Head);
+
     printf("\n");
 }
