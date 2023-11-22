@@ -1,0 +1,22 @@
+write code in c for             
+1. create a Single LL 
+2. traversal 
+3. insert at the beginning
+4. insert at the end
+5. insert after the element
+6. delete from the beginning
+7. delete from the end
+8. delete after the element
+9. convert to circular LL
+10. insertion circular LL
+11. deletion circular LL
+12. convert to DLL 
+13. insert at the beginning in DLL
+14. insert at the end in  DLL
+15. insert after the element in DLL
+16. insert before the element in DLL
+17. delete from the beginning in DLL
+18. delete from the end in DLL
+19. delete after the element in DLL 
+20. delete before the element in DLL
+21. EXIT

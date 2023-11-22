@@ -1,0 +1,9 @@
+
+Recursive Process... Here, function fName(i) has void return type,
+and i=5, I,II,III, and I recursive calls.
+You can check the recursive call and return through the arrow direction.
+Also, check below the stack memory allocation during recursion and 
+deallocation after call is over.
+
+you can write a recursive algorithm for factorial calculation
+and also try to represent the recursive call by using above method for n=5 by pen n paper.
