@@ -1,0 +1,4 @@
+GCD of 1 and 22 is 1
+GCD of 3 and 44 is 1
+GCD of 6 and 78 is 6
+GCD of 554 and 323 is 1
