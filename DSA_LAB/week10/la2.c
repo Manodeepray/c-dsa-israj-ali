@@ -60,6 +60,7 @@ int main()
 {
     int arr[] = {12, 11, 13, 5, 6, 7};
     int n = sizeof(arr) / sizeof(arr[0]);
+    printf("Roll NO. 2230028 NAME : MANODEEP RAY\n");
 
     printf("Original array: \n");
     printArray(arr, n);
